@@ -4,16 +4,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Animation from './assets/animations/Animation';
-
-import AnimationFiles from './assets/animations/index'
-
+import Animations from './assets/animations/index'
 
 const Tab = createBottomTabNavigator()
 
 const Home = () => {
     
     return (
-        <Animation source={AnimationFiles.files.rainy}/>
+        <Animation source={Animations.storm}/>
     )
 }
 
