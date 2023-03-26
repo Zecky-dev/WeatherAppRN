@@ -5,12 +5,15 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Animation from './assets/animations/Animation';
 
+import AnimationFiles from './assets/animations/index'
+
+
 const Tab = createBottomTabNavigator()
 
 const Home = () => {
     
     return (
-        <Animation source={"./rainy.json"}/>
+        <Animation source={AnimationFiles.files.rainy}/>
     )
 }
 
