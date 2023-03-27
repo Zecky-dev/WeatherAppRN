@@ -8,6 +8,7 @@ const assets = {
         storm: require('./files/storm.json'),
         sunny: require('./files/sunny.json'),
         thunder: require('./files/thunder.json'),
+        
     }
 }
 

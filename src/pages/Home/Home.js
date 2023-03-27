@@ -1,11 +1,26 @@
 import React from 'react'
-import { View, StatusBar, Text } from 'react-native'
+import { View, StatusBar, Text,ImageBackground } from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
 import styles from './Home.style'
+import InfoCard from '../../components/InfoCard'
 
-const style = styles['light'] 
+const style = styles['light']
+
+const Statusbar = () => <StatusBar translucent backgroundColor='transparent'/>
+
+const Searchbar = () => {
+    return (
+        <View style={style.search_bar_container}>
+            <SearchBar
+                placeholder="Şehir ismi giriniz..."
+                onPress={() => alert("onPress")}
+                onChangeText={(text) => console.log(text)}
+            />
+        </View>
+    )
+}
 
 const TopContainer = () => {
     return (
@@ -21,73 +36,28 @@ const TopContainer = () => {
     )
 }
 
-
-{
-    /*
-const MidContainer = () => {
-    return (
-        // Hava durumu bilgileri
-        <View style={styles.mid_container['light']}>
-            <View style={styles.mid_left['light']}>
-                <Text style={styles.degree['light']}>
-                    7 °C
-                </Text>
-            </View>
-            <View style={styles.mid_right['light']}>
-                <View style={styles.mid_right_inner_top['light']}>
-                    <Text style={styles.city['light']}>Istanbul</Text>
-                </View>
-                <View style={styles.mid_right_inner_bottom['light']}>
-                    <Text style={styles.weather_status['light']}>
-                        Yağışlı
-                    </Text>
-                </View>
-            </View>
-        </View>
-    )
-}
-    */
-}
+    
+const MidContainer = () => <InfoCard/>
 
 
 const BottomContainer = () => {
     return (
+
         <View style={style.bottom_container}>
-
+            <Text>Test</Text>
         </View>
+
     )
 }
-
-const Searchbar = () => {
-    return (
-        <View style={style.search_bar_container}>
-            <SearchBar
-                placeholder="Şehir ismi giriniz..."
-                onPress={() => alert("onPress")}
-                onChangeText={(text) => console.log(text)}
-            />
-        </View>
-    )
-}
-
-const Statusbar = () => {
-    return (
-        <StatusBar
-        backgroundColor={'slategray'}
-        />
-    )
-}
-
-
-
 
 export default function () {
     return (
-        <View style={style.container}>
-            <Statusbar/>
-            <Searchbar/>
-            <TopContainer/>
-            <BottomContainer/>
-        </View>
+        <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
+            <Statusbar />
+            <Searchbar />
+            <TopContainer />
+            <MidContainer />
+            <BottomContainer />
+        </ImageBackground>
     );
 };
