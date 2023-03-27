@@ -5,21 +5,25 @@ import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
 import styles from './Home.style'
 
+const style = styles['light'] 
 
 const TopContainer = () => {
     return (
-        <View style={styles.top_container['light']}>
-            <View style={styles.animation_container['light']}>
+        <View style={style.top_container}>
+            <View style={style.animation_container}>
                 {/* Hava durumuna göre gösterilecek animasyon*/}
                 <Animation source={Anims.rainy} />
             </View>
-            <View style={styles.other_daily_container['light']}>
+            <View style={style.other_daily_container}>
                 {/* Diğer saatlerdeki hava durumları */}
             </View>
         </View>
     )
 }
 
+
+{
+    /*
 const MidContainer = () => {
     return (
         // Hava durumu bilgileri
@@ -42,10 +46,13 @@ const MidContainer = () => {
         </View>
     )
 }
+    */
+}
+
 
 const BottomContainer = () => {
     return (
-        <View style={styles.bottom_container['light']}>
+        <View style={style.bottom_container}>
 
         </View>
     )
@@ -53,7 +60,7 @@ const BottomContainer = () => {
 
 const Searchbar = () => {
     return (
-        <View style={styles.search_bar_container['light']}>
+        <View style={style.search_bar_container}>
             <SearchBar
                 placeholder="Şehir ismi giriniz..."
                 onPress={() => alert("onPress")}
@@ -76,11 +83,10 @@ const Statusbar = () => {
 
 export default function () {
     return (
-        <View style={styles.container['light']}>
+        <View style={style.container}>
             <Statusbar/>
             <Searchbar/>
             <TopContainer/>
-            <MidContainer/>
             <BottomContainer/>
         </View>
     );
