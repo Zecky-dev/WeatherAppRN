@@ -1,66 +1,16 @@
-import React, {useEffect} from 'react'
-import { View, StatusBar, Text } from 'react-native'
+import React from 'react'
+import { View, StatusBar , ImageBackground, ScrollView } from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
 import useFetch from '../../hooks/useFetch'
 import styles from './Home.style'
+import InfoCard from '../../components/InfoCard'
+import DailyInfoCard from '../../components/DailyInfoCard'
 
 const style = styles['light'] 
 
-
-
-
-const TopContainer = () => {
-    return (
-        <View style={style.top_container}>
-            <View style={style.animation_container}>
-                {/* Hava durumuna göre gösterilecek animasyon*/}
-                <Animation source={Anims.rainy} />
-            </View>
-            <View style={style.other_daily_container}>
-                {/* Diğer saatlerdeki hava durumları */}
-            </View>
-        </View>
-    )
-}
-
-
-{
-    /*
-const MidContainer = () => {
-    return (
-        // Hava durumu bilgileri
-        <View style={styles.mid_container['light']}>
-            <View style={styles.mid_left['light']}>
-                <Text style={styles.degree['light']}>
-                    7 °C
-                </Text>
-            </View>
-            <View style={styles.mid_right['light']}>
-                <View style={styles.mid_right_inner_top['light']}>
-                    <Text style={styles.city['light']}>Istanbul</Text>
-                </View>
-                <View style={styles.mid_right_inner_bottom['light']}>
-                    <Text style={styles.weather_status['light']}>
-                        Yağışlı
-                    </Text>
-                </View>
-            </View>
-        </View>
-    )
-}
-    */
-}
-
-
-const BottomContainer = () => {
-    return (
-        <View style={style.bottom_container}>
-
-        </View>
-    )
-}
+const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 
 const Searchbar = () => {
     return (
@@ -74,24 +24,47 @@ const Searchbar = () => {
     )
 }
 
-const Statusbar = () => {
+const TopContainer = () => {
     return (
-        <StatusBar
-        backgroundColor={'slategray'}
-        />
+        <View style={style.top_container}>
+            <View style={style.animation_container}>
+                {/* Hava durumuna göre gösterilecek animasyon*/}
+                <Animation source={Anims.sunny} />
+            </View>
+            <View style={style.other_daily_container}>
+                <DailyInfoCard/>
+                <DailyInfoCard/>
+            </View>
+        </View>
     )
 }
 
 
+const MidContainer = () => <InfoCard />
 
+
+const BottomContainer = () => {
+    return (
+        <ScrollView style={style.bottom_container} horizontal showsHorizontalScrollIndicator={false}>
+                <DailyInfoCard />
+                <DailyInfoCard />
+                <DailyInfoCard />
+                <DailyInfoCard/>
+                <DailyInfoCard />
+                <DailyInfoCard />
+                <DailyInfoCard/>
+        </ScrollView>
+    )
+}
 
 export default function () {
     return (
-        <View style={style.container}>
-            <Statusbar/>
-            <Searchbar/>
-            <TopContainer/>
-            <BottomContainer/>
-        </View>
+        <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
+            <Statusbar />
+            <Searchbar />
+            <TopContainer />
+            <MidContainer />
+            <BottomContainer />
+        </ImageBackground>
     );
 }
