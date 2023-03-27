@@ -4,7 +4,7 @@ export default StyleSheet.create({
     light:{
          /* Mid */
          mid_container: {
-            flex: 1,
+            flex: 0.85,
             flexDirection: 'row',
         },
 
