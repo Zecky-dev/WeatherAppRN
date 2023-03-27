@@ -13,7 +13,10 @@ const Tab = createBottomTabNavigator()
 
 const Tabs = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={{
+            tabBarStyle : {
+            }
+        }}>
             <Tab.Screen
             name="Home"
             component={Home}
