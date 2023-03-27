@@ -1,126 +1,40 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-    container: {
-        light: {
+
+    light: {
+        container: {
             flex: 1,
-            backgroundColor: '#8395a7',
+            backgroundColor: '#18dcff',
         },
-    },
-    top_container: {
-        light: {
+        top_container: {
             flexDirection: 'row',
-            flex: 2,
+            flex: 1.5,
             marginVertical: 16,
             marginHorizontal: 12,
         },
-    },
-    animation_container: {
-        light: {
-            flex: 1
-        }
-    },
-    other_daily_container: {
-        light: {
+        animation_container: {
+            flex: 0.82
+        },
+        other_daily_container: {
             flex: 0.25,
-            backgroundColor: '#303030',
+            backgroundColor: '#FFFFFF1F',
             borderRadius: 4,
-        }
-    },
-
-    /* Mid */
-    mid_container: {
-        light: {
-            flex:1,
-            flexDirection: 'row',
         },
-    },
-
-    /* Mid Left */
-
-    mid_left: {
-        light: {
-            flex:0.5,
-            backgroundColor: '#303030',
-            margin: 8,
-            borderRadius: 8,
-            justifyContent: 'center',
-            alignItems: 'center',
-        }
-    },
-
-    degree: {
-        light: {
-            color: 'white',
-            fontSize: 36,
-        }
-    },
-
-
-    /* Mid Right */
-
-    mid_right: {
-        light: {
+        /* Bottom */
+        bottom_container: {
             flex: 1,
-            flexDirection: 'column',
             margin: 8,
             borderRadius: 8,
-        }
-    },
-
-    /* Mid right inner top */
-    mid_right_inner_top: {
-        light: {
-            flex: 1,
-            backgroundColor: '#16a085',
-            borderTopStartRadius: 4,
-            borderTopEndRadius: 4,
-            justifyContent: 'center',
-            alignItems: 'center',
+            backgroundColor: '#FFFFFF1F',
+        },
+        search_bar_container: {
+            marginTop: 36,
         },
     },
 
-    city: {
-        light: {
-            color: 'white',
-            fontSize: 24,
-            fontWeight: 'bold',
-        }
-    },
+    dark: {
 
-    weather_status: {
-        light: {
-            color:'white',
-            fontSize: 32,
-        }
-    },
+    }
 
-    mid_right_inner_bottom: {
-        light: {
-            flex: 2,
-            backgroundColor: '#303030',
-            borderBottomStartRadius: 4,
-            borderBottomEndRadius: 4,
-            justifyContent: 'center',
-            alignItems: 'center',
-        }
-    },
-
-
-
-
-    /* Bottom */
-    bottom_container: {
-        light: {
-            flex:1,
-            backgroundColor: '#303030',
-            margin: 8,
-            borderRadius: 8,
-        },
-    },
-    search_bar_container:{
-        light: {
-            marginTop:8,
-        },  
-    },
 })
