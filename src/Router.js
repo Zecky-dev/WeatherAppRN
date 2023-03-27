@@ -1,27 +1,15 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Animation from './assets/animations/Animation';
 import Animations from './assets/animations/index'
+import Home from './pages/Home';
+import Settings from './pages/Settings';
 
 const Tab = createBottomTabNavigator()
 
-const Home = () => {
-    
-    return (
-        <Animation source={Animations.storm}/>
-    )
-}
 
-const Settings = () => {
-    return (
-        <View>
-            <Text>Settings</Text>
-        </View>
-    )
-} 
 
 const Tabs = () => {
     return (
@@ -32,7 +20,8 @@ const Tabs = () => {
             options={{
                 tabBarIcon: ({ focused, color, size }) => {
                     return <Icon name='home' size={32}/>
-                }
+                },
+                headerShown:false
             }}
             />
             <Tab.Screen name="Settings" component={Settings}/>
