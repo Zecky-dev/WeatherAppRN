@@ -9,24 +9,23 @@ export default StyleSheet.create({
         },
         top_container: {
             flexDirection: 'row',
-            flex: 1.5,
+            flex: 2,
             marginVertical: 16,
             marginHorizontal: 12,
         },
         animation_container: {
-            flex: 0.82
+            flex: 0.60
         },
         other_daily_container: {
-            flex: 0.25,
+            flex: 0.40,
             backgroundColor: '#FFFFFF1F',
             borderRadius: 4,
         },
         /* Bottom */
         bottom_container: {
-            flex: 1,
+            flex: 0.5,
             margin: 8,
             borderRadius: 8,
-            backgroundColor: '#FFFFFF1F',
         },
         search_bar_container: {
             marginTop: 36,
