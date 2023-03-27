@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { View, StatusBar, Text } from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
+import useFetch from '../../hooks/useFetch'
 import styles from './Home.style'
 
 const style = styles['light'] 
+
+
+
 
 const TopContainer = () => {
     return (
@@ -90,4 +94,4 @@ export default function () {
             <BottomContainer/>
         </View>
     );
-};
+}
