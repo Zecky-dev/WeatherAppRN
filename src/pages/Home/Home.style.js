@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet,Dimensions } from 'react-native'
 
 export default StyleSheet.create({
 
@@ -14,10 +14,11 @@ export default StyleSheet.create({
             marginHorizontal: 12,
         },
         animation_container: {
-            flex: 0.60
+            height:Dimensions.get('screen').height/2.4,
+            width:Dimensions.get('screen').width/1.45,
         },
         other_daily_container: {
-            flex: 0.40,
+            height:Dimensions.get('screen').height/2.5,
             backgroundColor: '#FFFFFF1F',
             borderRadius: 4,
         },
