@@ -40,7 +40,7 @@ export default StyleSheet.create({
             fontWeight:'bold',
             color:'white',
             fontSize:14
-        }
+        },
     },
     dark:{
 
