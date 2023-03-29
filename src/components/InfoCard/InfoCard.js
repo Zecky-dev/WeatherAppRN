@@ -2,8 +2,8 @@ import React from 'react'
 import { Text,View } from 'react-native'
 import styles from './InfoCard.style'
 
-const style = styles['light']
-export default function() {
+export default function({theme}) {
+    const style = styles[theme]
     return(
         <View style={style.mid_container}>
             <View style={style.mid_left}>
