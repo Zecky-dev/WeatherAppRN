@@ -168,7 +168,15 @@ export default function () {
             {
                 loading ?
                     (
-                        <Animation source={Anims.loading} />
+                        <View style={{flex:1,}}>
+                            <View style={{position:'absolute',top:'60%',justifyContent:'center',alignItems:'center',width:'100%'}}>
+                                <Text style={{color:'white',fontSize:36}}>Yükleniyor..</Text>
+                            </View>
+                            
+                            <Animation source={Anims.loading} />
+                            
+                        </View>
+                        
                     )
                     : error ? (
                         <Animation source={Anims.error} />
