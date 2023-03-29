@@ -4,17 +4,15 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
-
+import { Context } from './context/Context';
 
 const Tab = createBottomTabNavigator()
-
-
 
 const Tabs = () => {
     return (
         <Tab.Navigator screenOptions={{
             tabBarStyle: {
-                
+
             },
             tabBarHideOnKeyboard: true,
             tabBarShowLabel: false,
@@ -46,13 +44,16 @@ const Tabs = () => {
     )
 }
 
+export default function (props) {
+    const [theme, setTheme] = React.useState("dark")
 
-
-export default function () {
     return (
-        <NavigationContainer>
-            <Tabs />
-        </NavigationContainer>
+        <Context.Provider value={{theme,setTheme}}>
+            <NavigationContainer>
+                <Tabs/>
+            </NavigationContainer>
+        </Context.Provider>
+
     )
 }
 
