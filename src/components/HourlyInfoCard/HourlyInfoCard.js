@@ -4,9 +4,8 @@ import Animation from '../../assets/animations/Animation'
 //import Anims from '../../assets/animations/index'
 import styles from './HourlyInfoCard.style'
 
-const style = styles['light'];
-
-export default function({weather}){
+export default function({weather,theme}){
+    const style = styles[theme]
     const {animation,time} = weather;
     const formattedTime = time.substring(time.length - 5,time.length)
 
