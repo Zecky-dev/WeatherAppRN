@@ -2,8 +2,6 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Animation from './assets/animations/Animation';
-import Animations from './assets/animations/index'
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 
@@ -36,9 +34,9 @@ const Tabs = () => {
 
 export default function () {
   return (
-    <NavigationContainer>
-        <Tabs/>
-    </NavigationContainer>
+        <NavigationContainer>
+            <Tabs/>        
+        </NavigationContainer>    
     )
 }
 
