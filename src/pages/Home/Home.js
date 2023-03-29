@@ -1,14 +1,20 @@
 import React from 'react'
-import { View, StatusBar, Text,ImageBackground } from 'react-native'
+import { View, StatusBar , ImageBackground, ScrollView,KeyboardAvoidingView } from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
+import useFetch from '../../hooks/useFetch'
 import styles from './Home.style'
 import InfoCard from '../../components/InfoCard'
+import DailyInfoCard from '../../components/DailyInfoCard'
+import HourlyInfoCard from '../../components/HourlyInfoCard'
 
-const style = styles['light']
+import { KeyboardAvoidingView } from 'react-native';
 
-const Statusbar = () => <StatusBar translucent backgroundColor='transparent'/>
+
+const style = styles['light'] 
+
+const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 
 const Searchbar = () => {
     return (
@@ -27,37 +33,64 @@ const TopContainer = () => {
         <View style={style.top_container}>
             <View style={style.animation_container}>
                 {/* Hava durumuna göre gösterilecek animasyon*/}
-                <Animation source={Anims.rainy} />
+                <Animation source={Anims.sunny} />
             </View>
-            <View style={style.other_daily_container}>
-                {/* Diğer saatlerdeki hava durumları */}
-            </View>
+            <ScrollView style={style.other_daily_container} showsVerticalScrollIndicator={false}>
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+            </ScrollView>
         </View>
     )
 }
 
-    
-const MidContainer = () => <InfoCard/>
+
+const MidContainer = () => <InfoCard />
 
 
 const BottomContainer = () => {
     return (
-
-        <View style={style.bottom_container}>
-            <Text>Test</Text>
-        </View>
-
+        <ScrollView style={style.bottom_container} horizontal showsHorizontalScrollIndicator={false}>
+                <DailyInfoCard />
+                <DailyInfoCard />
+                <DailyInfoCard />
+                <DailyInfoCard/>
+                <DailyInfoCard />
+                <DailyInfoCard />
+                <DailyInfoCard/>
+        </ScrollView>
     )
 }
 
 export default function () {
     return (
-        <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
-            <Statusbar />
-            <Searchbar />
-            <TopContainer />
-            <MidContainer />
-            <BottomContainer />
-        </ImageBackground>
+            <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
+                <Statusbar />
+                <Searchbar />
+                <TopContainer />
+                <MidContainer />
+                <BottomContainer />                        
+            </ImageBackground>        
     );
-};
+}
