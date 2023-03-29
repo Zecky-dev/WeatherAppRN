@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StatusBar , ImageBackground, ScrollView } from 'react-native'
+import { View, StatusBar , ImageBackground, ScrollView,KeyboardAvoidingView } from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
@@ -7,6 +7,7 @@ import useFetch from '../../hooks/useFetch'
 import styles from './Home.style'
 import InfoCard from '../../components/InfoCard'
 import DailyInfoCard from '../../components/DailyInfoCard'
+import HourlyInfoCard from '../../components/HourlyInfoCard'
 
 import { KeyboardAvoidingView } from 'react-native';
 
@@ -34,10 +35,32 @@ const TopContainer = () => {
                 {/* Hava durumuna göre gösterilecek animasyon*/}
                 <Animation source={Anims.sunny} />
             </View>
-            <View style={style.other_daily_container}>
-                <DailyInfoCard/>
-                <DailyInfoCard/>
-            </View>
+            <ScrollView style={style.other_daily_container} showsVerticalScrollIndicator={false}>
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+                <HourlyInfoCard />
+            </ScrollView>
         </View>
     )
 }

@@ -13,7 +13,7 @@ export default function() {
             </View>
             <View style={style.mid_right}>
                 <View style={style.mid_right_inner_top}>
-                    <Text style={style.city}>Istanbul</Text>
+                    <Text style={style.city}>Istanbul - Yerel Saat</Text>
                 </View>
                 <View style={style.mid_right_inner_bottom}>
                     <Text style={style.weather_status}>
