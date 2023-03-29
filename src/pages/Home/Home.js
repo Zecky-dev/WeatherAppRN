@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, StatusBar, ImageBackground, ScrollView} from 'react-native'
+import React, { useContext } from 'react'
+import { View, StatusBar, ImageBackground, ScrollView } from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
@@ -8,16 +8,13 @@ import styles from './Home.style'
 import InfoCard from '../../components/InfoCard'
 import DailyInfoCard from '../../components/DailyInfoCard'
 import HourlyInfoCard from '../../components/HourlyInfoCard'
-
-
-const style = styles['light']
-
+import { Context } from '../../context/Context'
 
 const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 
-const Searchbar = () => {
+const Searchbar = ({theme}) => {
     return (
-        <View style={style.search_bar_container}>
+        <View style={styles[theme].search_bar_container}>
             <SearchBar
                 placeholder="Şehir ismi giriniz..."
                 onPress={() => alert("onPress")}
@@ -27,14 +24,14 @@ const Searchbar = () => {
     )
 }
 
-const TopContainer = () => {
+const TopContainer = ({theme}) => {
     return (
-        <View style={style.top_container}>
-            <View style={style.animation_container}>
+        <View style={styles[theme].top_container}>
+            <View style={styles[theme].animation_container}>
                 {/* Hava durumuna göre gösterilecek animasyon*/}
                 <Animation source={Anims.sunny} />
             </View>
-            <ScrollView style={style.other_daily_container} showsVerticalScrollIndicator={false}>
+            <ScrollView style={styles[theme].other_daily_container} showsVerticalScrollIndicator={false}>
                 <HourlyInfoCard />
                 <HourlyInfoCard />
                 <HourlyInfoCard />
@@ -65,12 +62,13 @@ const TopContainer = () => {
 }
 
 
-const MidContainer = () => <InfoCard />
+
+const MidContainer = ({theme}) => <InfoCard theme={theme} />
 
 
-const BottomContainer = () => {
+const BottomContainer = ({theme}) => {
     return (
-        <ScrollView style={style.bottom_container} horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView style={styles[theme].bottom_container} horizontal showsHorizontalScrollIndicator={false}>
             <DailyInfoCard />
             <DailyInfoCard />
             <DailyInfoCard />
@@ -83,32 +81,30 @@ const BottomContainer = () => {
 }
 
 export default function () {
-
-    // useFetch test
-    const {data,loading,error} = useFetch('https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul')
-    console.log(data,loading,error)
+    const {theme} = useContext(Context);
+    const { data, loading, error } = useFetch('https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul')
 
     return (
-            <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
-                <Statusbar />
-                {
-                    loading ? 
+        <ImageBackground style={styles[theme].container} source={(theme==='light')?require('../../assets/images/light_mode_back.jpeg'):require('../../assets/images/dark_mode_back.png')}>
+            <Statusbar />
+            {
+                loading ?
                     (
-                        <Animation source={Anims.loading}/>
-                    ) 
+                        <Animation source={Anims.loading} />
+                    )
                     : error ? (
-                        <Animation source={Anims.error}/>
+                        <Animation source={Anims.error} />
                     )
-                    : (
-                        <>
-                            <Searchbar />
-                            <TopContainer />
-                            <MidContainer />
-                            <BottomContainer /> 
-                        </>
-                    )
-                }
-                                       
-            </ImageBackground>        
+                        : (
+                            <>
+                                <Searchbar theme={theme} />
+                                <TopContainer theme={theme}/>
+                                <MidContainer theme={theme} />
+                                <BottomContainer theme={theme}/>
+                            </>
+                        )
+            }
+
+        </ImageBackground>
     );
 }
