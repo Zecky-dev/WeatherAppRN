@@ -6,9 +6,9 @@ import 'moment/locale/tr'
 
 export default function({theme,weather}) {
     let hour = moment().format('LT')
-    
     const style = styles[theme]
     const degree = Math.round(parseFloat(weather.degree)).toString()
+
     return(
         <View style={style.mid_container}>
             <View style={style.mid_left}>
