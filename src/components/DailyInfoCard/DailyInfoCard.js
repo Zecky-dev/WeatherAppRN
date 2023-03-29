@@ -5,6 +5,7 @@ import styles from './DailyInfoCard.style'
 import moment from 'moment'
 
 export default function({weather,theme}){
+    const style = styles[theme]
     function getDayName(dateStr, locale) {
         var date = new Date(dateStr);
         return date.toLocaleDateString(locale, { weekday: 'long' });        

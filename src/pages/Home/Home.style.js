@@ -11,11 +11,12 @@ const baseStyle = {
         marginHorizontal: 12,
     },
     animation_container: {
-        height:Dimensions.get('screen').height/2.4,
-        width:Dimensions.get('screen').width/1.45,
+        flex: 0.75,
+        //height:Dimensions.get('screen').height/2.4,
+        //width:Dimensions.get('screen').width/1.45,
     },
     other_daily_container: {
-        height:Dimensions.get('screen').height/2.5,
+        flex:0.25,
         backgroundColor: '#FFFFFF1F',
         borderRadius: 4,
     },

@@ -24,6 +24,7 @@ function useFetch(url) {
 
 
     useEffect(() => {
+        console.log(url)
         getData()
         if(data!=null && error==null && loading == null) {
             console.log(data)
@@ -32,7 +33,7 @@ function useFetch(url) {
             },60 * 60 * 1000)
         }
         return () => clearInterval(interval);
-    },[])
+    },[url])
     
     return {data, loading, error}
 }

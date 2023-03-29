@@ -12,7 +12,7 @@ export default function({weather,theme}){
     return(
         <View style={style.container}>
             <View style={style.top_container}>
-                <Animation source={animation}/>
+                <Animation source={animation} style={{width:120,height:120}}/>
             </View>
             <View style={style.bottom_container}>
                 <Text style={style.hour_text}>{formattedTime}</Text>

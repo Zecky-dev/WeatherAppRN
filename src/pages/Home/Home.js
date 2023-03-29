@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { View, StatusBar, ImageBackground, FlatList } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { View, StatusBar, ImageBackground, FlatList, Text } from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
@@ -9,6 +9,10 @@ import InfoCard from '../../components/InfoCard'
 import DailyInfoCard from '../../components/DailyInfoCard'
 import HourlyInfoCard from '../../components/HourlyInfoCard'
 import { Context } from '../../context/Context'
+import Modal from 'react-native-modal'
+
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+
 
 // Functions
 
@@ -20,7 +24,6 @@ const getWeatherStatus = (weatherCode) => {
 
     else if (weatherCode == 1 || weatherCode == 2 || weatherCode == 3) {
         return { animation: Anims.partly_cloudy, status: 'Parçalı Bulutlu' }
-
     }
 
     else if (weatherCode == 45 || weatherCode == 48) {
@@ -104,13 +107,14 @@ const getWeatherInfo = (data, type) => {
 // Components
 const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 
-const Searchbar = ({ theme }) => {
+const Searchbar = ({ theme, modal }) => {
+    const { modalVisible, setModalVisible } = modal
     return (
         <View style={styles[theme].search_bar_container}>
             <SearchBar
                 placeholder="Şehir ismi giriniz..."
-                onPress={() => alert("onPress")}
                 onChangeText={(text) => console.log(text)}
+                onTouchStart={() => setModalVisible(!modalVisible)}
             />
         </View>
     )
@@ -127,14 +131,14 @@ const TopContainer = ({ data, theme }) => {
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={getWeatherInfo(data, 'daily')}
-                    renderItem={({ item }) => <HourlyInfoCard weather={item} theme={theme}/>}
+                    renderItem={({ item }) => <HourlyInfoCard weather={item} theme={theme} />}
                 />
             </View>
         </View>
     )
 }
 
-const MidContainer = ({ theme, weather }) => <InfoCard theme={theme} weather={weather} />
+const MidContainer = ({ theme, weather, location }) => <InfoCard theme={theme} weather={weather} location={location} />
 
 const BottomContainer = ({ data, theme }) => {
     getWeatherInfo(data, 'weekly')
@@ -144,16 +148,21 @@ const BottomContainer = ({ data, theme }) => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 data={getWeatherInfo(data, 'weekly')}
-                renderItem={({ item }) => <DailyInfoCard weather={item} theme={theme}/>}
+                renderItem={({ item }) => <DailyInfoCard weather={item} theme={theme} />}
             />
         </View>
 
     )
 }
 
+
 export default function () {
     const { theme } = useContext(Context);
-    const { data, loading, error } = useFetch('https://api.open-meteo.com/v1/forecast?latitude=4.2105&longitude=38.3335&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul')
+    const [selectedLocation, setSelectedLocation] = useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
+
+    const { data, loading, error } = useFetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedLocation.lat}&longitude=${selectedLocation.lng}&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul`)
+
+    const [modalVisible, setModalVisible] = useState(false)
 
     return (
         <ImageBackground
@@ -165,15 +174,15 @@ export default function () {
             {
                 loading ?
                     (
-                        <View style={{flex:1,}}>
-                            <View style={{position:'absolute',top:'60%',justifyContent:'center',alignItems:'center',width:'100%'}}>
-                                <Text style={{color:'white',fontSize:36}}>Yükleniyor..</Text>
+                        <View style={{ flex: 1, }}>
+                            <View style={{ position: 'absolute', top: '60%', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                                <Text style={{ color: 'white', fontSize: 36 }}>Yükleniyor..</Text>
                             </View>
-                            
+
                             <Animation source={Anims.loading} />
-                            
+
                         </View>
-                        
+
                     )
                     : error ? (
                         <Animation source={Anims.error} />
@@ -181,10 +190,44 @@ export default function () {
                         : data ?
                             (
                                 <>
-                                    <Searchbar theme={theme} />
+                                    <Searchbar theme={theme} modal={{ setModalVisible, modalVisible }} />
                                     <TopContainer data={data} theme={theme} />
-                                    <MidContainer theme={theme} weather={getWeatherInfo(data, 'current')} />
+                                    <MidContainer theme={theme} weather={getWeatherInfo(data, 'current')} location={selectedLocation.address_name} />
                                     <BottomContainer data={data} theme={theme} />
+                                    <Modal
+                                        isVisible={modalVisible}
+                                        onBackButtonPress={() => setModalVisible(!modalVisible)}
+                                        onBackdropPress={() => setModalVisible(!modalVisible)}
+                                    >
+                                        <View style={{ backgroundColor: 'white', width: '100%', height: 200, borderRadius: 4, }}>
+                                            <GooglePlacesAutocomplete
+                                                placeholder='Ara'
+
+                                                fetchDetails={true}
+                                                onPress={(data, details = null) => {
+                                                    console.log(data)
+                                                    console.log(details)
+                                                    setSelectedLocation({ lat: details.geometry.location.lat, lng: details.geometry.location.lng, address_name: details.formatted_address })
+                                                    setModalVisible(!modalVisible)
+                                                }}
+                                                styles={
+                                                    {
+                                                        textInput: {
+                                                            borderBottomWidth: 0.8,
+                                                            borderBottomColor: 'gray',
+                                                            borderBottomLeftRadius: 0,
+                                                            borderBottomRightRadius: 0,
+                                                        }
+                                                    }    
+                                                }
+                                                enablePoweredByContainer = {false}
+                                                query={{
+                                                    key: 'AIzaSyAwXeRKWDGslG6VS_wXXfCA6Hmmwy3YYQM',
+                                                    language: 'tr',
+                                                }}
+                                            />
+                                        </View>
+                                    </Modal>
                                 </>
                             )
                             : null

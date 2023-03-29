@@ -4,7 +4,7 @@ import styles from './InfoCard.style'
 import moment from 'moment'
 import 'moment/locale/tr'
 
-export default function({theme,weather}) {
+export default function({theme,weather,location}) {
     let hour = moment().format('LT')
     const style = styles[theme]
     const degree = Math.round(parseFloat(weather.degree)).toString()
@@ -18,7 +18,7 @@ export default function({theme,weather}) {
             </View>
             <View style={style.mid_right}>
                 <View style={style.mid_right_inner_top}>
-                    <Text style={style.city}>Istanbul - {hour}</Text>
+                    <Text style={style.city}>{location} - {hour}</Text>
                 </View>
                 <View style={style.mid_right_inner_bottom}>
                     <Text style={style.weather_status}>
