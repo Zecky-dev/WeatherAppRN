@@ -3,6 +3,8 @@ import { Text, View, Switch } from 'react-native'
 import { Context } from '../../context/Context';
 import styles from './themeCard.style'
 
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 export default function () {
     const { theme, setTheme } = useContext(Context);
     const [isEnabled, setIsEnabled] = useState(false);
