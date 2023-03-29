@@ -5,7 +5,8 @@ export default StyleSheet.create({
         container:{
             flex:1,
             width:Dimensions.get('screen').width/4,
-            marginHorizontal:3,
+            marginHorizontal: 3,
+            marginVertical: 4,
         },
         top_container:{
             flex: 1,
@@ -20,7 +21,7 @@ export default StyleSheet.create({
             flex:3,
             backgroundColor: '#FFFFFF1F',
             marginTop:4,
-            marginBottom:4
+            marginBottom:4,
         },
         bottom_container:{
             flex:1,
