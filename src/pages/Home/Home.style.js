@@ -24,6 +24,7 @@ export default StyleSheet.create({
         },
         /* Bottom */
         bottom_container: {
+            width: 200,
             flex: 0.5,
             margin: 8,
             borderRadius: 8,
