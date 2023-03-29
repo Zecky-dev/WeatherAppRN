@@ -8,6 +8,9 @@ import styles from './Home.style'
 import InfoCard from '../../components/InfoCard'
 import DailyInfoCard from '../../components/DailyInfoCard'
 
+import { KeyboardAvoidingView } from 'react-native';
+
+
 const style = styles['light'] 
 
 const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
@@ -59,12 +62,12 @@ const BottomContainer = () => {
 
 export default function () {
     return (
-        <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
-            <Statusbar />
-            <Searchbar />
-            <TopContainer />
-            <MidContainer />
-            <BottomContainer />
-        </ImageBackground>
+            <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
+                <Statusbar />
+                <Searchbar />
+                <TopContainer />
+                <MidContainer />
+                <BottomContainer />                        
+            </ImageBackground>        
     );
 }
