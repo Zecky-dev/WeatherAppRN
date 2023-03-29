@@ -8,11 +8,13 @@ import { Context } from './context/Context';
 
 const Tab = createBottomTabNavigator()
 
-const Tabs = () => {
+const Tabs = ({theme}) => {
+
     return (
         <Tab.Navigator screenOptions={{
             tabBarStyle: {
-
+                backgroundColor: theme === 'dark' ? 'black' : 'white',
+                borderTopWidth: 0,
             },
             tabBarHideOnKeyboard: true,
             tabBarShowLabel: false,
@@ -23,7 +25,9 @@ const Tabs = () => {
                 component={Home}
                 options={{
                     tabBarIcon: ({ focused, color, size }) => {
-                        return focused ? <Icon name='home' size={32} color={'black'} /> : <Icon name='home-outline' size={32} color={'black'} />
+                        return focused
+                        ? <Icon name='home' size={32} color={theme=='dark' ? 'white' : 'black'} /> 
+                        : <Icon name='home-outline' size={32} color={theme=='dark' ? 'white' : 'black'} />
                     },
                     headerShown: false
                 }}
@@ -34,7 +38,9 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
-                            focused ? <Icon name='settings' size={32} color={'black'} /> : <Icon name='settings-outline' size={32} color={'black'} />
+                            focused
+                            ? <Icon name='settings' size={32} color={theme=='dark' ? 'white' : 'black'} />
+                            : <Icon name='settings-outline' size={32} color={theme=='dark' ? 'white' : 'black'} />
                         )
                     },
 
@@ -44,13 +50,12 @@ const Tabs = () => {
     )
 }
 
-export default function (props) {
+export default function () {
     const [theme, setTheme] = React.useState("dark")
-
     return (
         <Context.Provider value={{theme,setTheme}}>
             <NavigationContainer>
-                <Tabs/>
+                <Tabs theme={theme}/>
             </NavigationContainer>
         </Context.Provider>
 

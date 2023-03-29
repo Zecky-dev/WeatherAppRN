@@ -21,9 +21,10 @@ const baseStyle = {
     },
     /* Bottom */
     bottom_container: {
-        flex: 0.5,
+        flex: 1,
         margin: 8,
         borderRadius: 8,
+        
     },
     search_bar_container: {
         marginTop: 36,
