@@ -9,6 +9,7 @@ import InfoCard from '../../components/InfoCard'
 import DailyInfoCard from '../../components/DailyInfoCard'
 import HourlyInfoCard from '../../components/HourlyInfoCard'
 
+
 const style = styles['light']
 
 
@@ -82,16 +83,32 @@ const BottomContainer = () => {
 }
 
 export default function () {
-    const { dailyData, dailyLoading, dailyError } = useFetch('https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul')
-    console.log(dailyData)
-    
+
+    // useFetch test
+    const {data,loading,error} = useFetch('https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul')
+    console.log(data,loading,error)
+
     return (
-        <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
-            <Statusbar />
-            <Searchbar />
-            <TopContainer />
-            <MidContainer />
-            <BottomContainer />
-        </ImageBackground>
+            <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
+                <Statusbar />
+                {
+                    loading ? 
+                    (
+                        <Animation source={Anims.loading}/>
+                    ) 
+                    : error ? (
+                        <Animation source={Anims.error}/>
+                    )
+                    : (
+                        <>
+                            <Searchbar />
+                            <TopContainer />
+                            <MidContainer />
+                            <BottomContainer /> 
+                        </>
+                    )
+                }
+                                       
+            </ImageBackground>        
     );
 }
