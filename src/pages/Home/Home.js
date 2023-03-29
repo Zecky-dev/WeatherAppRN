@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StatusBar , ImageBackground, ScrollView,KeyboardAvoidingView } from 'react-native'
+import { View, StatusBar, ImageBackground, ScrollView} from 'react-native'
 import SearchBar from 'react-native-dynamic-search-bar'
 import Animation from '../../assets/animations/Animation'
 import Anims from '../../assets/animations/index'
@@ -9,7 +9,8 @@ import InfoCard from '../../components/InfoCard'
 import DailyInfoCard from '../../components/DailyInfoCard'
 import HourlyInfoCard from '../../components/HourlyInfoCard'
 
-const style = styles['light'] 
+const style = styles['light']
+
 
 const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 
@@ -69,18 +70,21 @@ const MidContainer = () => <InfoCard />
 const BottomContainer = () => {
     return (
         <ScrollView style={style.bottom_container} horizontal showsHorizontalScrollIndicator={false}>
-                <DailyInfoCard />
-                <DailyInfoCard />
-                <DailyInfoCard />
-                <DailyInfoCard/>
-                <DailyInfoCard />
-                <DailyInfoCard />
-                <DailyInfoCard/>
+            <DailyInfoCard />
+            <DailyInfoCard />
+            <DailyInfoCard />
+            <DailyInfoCard />
+            <DailyInfoCard />
+            <DailyInfoCard />
+            <DailyInfoCard />
         </ScrollView>
     )
 }
 
 export default function () {
+    const { dailyData, dailyLoading, dailyError } = useFetch('https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul')
+    console.log(dailyData)
+    
     return (
         <ImageBackground style={style.container} source={require('../../assets/images/light_mode_back.jpeg')}>
             <Statusbar />
