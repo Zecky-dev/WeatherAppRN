@@ -5,22 +5,33 @@ function useFetch(url) {
     const [data,setData] = useState(null)
     const [loading,setLoading] = useState(null)
     const [error,setError] = useState(null)
+    let interval;
 
+    const getData = () => {
+        setLoading(true) 
+            axios.get(url)
+            .then(
+                res => {
+                    setLoading(false)
+                    setData(res.data)                    
+                }
+            )
+            .catch(err => {
+                setLoading(false)
+                setError(err)
+        })
+    }
 
 
     useEffect(() => {
-        setLoading(true) 
-        axios.get(url)
-        .then(
-            res => {
-                setLoading(false)
-                setData(res.data)
-            }
-        )
-        .catch(err => {
-            setLoading(false)
-            setError(err)
-        }) 
+        getData()
+        if(data!=null && error==null && loading == null) {
+            console.log(data)
+            interval = setInterval(() => {
+                getData()
+            },60 * 60 * 1000)
+        }
+        return () => clearInterval(interval);
     },[])
     
     return {data, loading, error}
