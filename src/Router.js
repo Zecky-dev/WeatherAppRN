@@ -3,15 +3,36 @@ import { Appearance } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
+import Loading from './pages/Loading';
 import { Context } from './context/Context';
 
+
 const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator();
 const DefaultScheme = Appearance.getColorScheme();
 
-const Tabs = ({theme}) => {
+const HomeStack = ({theme}) => {
+    return(
+        <Stack.Navigator screenOptions={{
+            headerShown:false
+        }}>
+            <Stack.Screen 
+            name='Loading' 
+            component={Loading} 
+            />
+            
+            <Stack.Screen 
+            name='Tabs' 
+            component={Tabs}
+            />
+        </Stack.Navigator>
+    )
+}
 
+const Tabs = ({theme}) => {
     return (
         <Tab.Navigator screenOptions={{
             tabBarStyle: {
