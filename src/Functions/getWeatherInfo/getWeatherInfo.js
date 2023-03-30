@@ -45,7 +45,7 @@ const getWeatherInfo = (data, type) => {
                     degree: hourly.temperature_2m[i],
                     time: hourly.time[i],
                     weatherStatus: getWeatherStatus(hourly.weathercode[i]).status,
-                    weatherCode: hourly.weathercode[i]
+                    weatherCode: hourly.weathercode[i],
                 }
             )
         }
