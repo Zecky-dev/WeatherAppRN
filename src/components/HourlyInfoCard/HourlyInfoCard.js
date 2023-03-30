@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text,View } from 'react-native'
-import Animation from '../../assets/animations/Animation'
-//import Anims from '../../assets/animations/index'
+import Animation from '../../assets/animations/Animation/Animation'
 import styles from './HourlyInfoCard.style'
 
 export default function({weather,theme}){

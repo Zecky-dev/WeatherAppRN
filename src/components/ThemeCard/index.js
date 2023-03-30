@@ -1,1 +1,1 @@
-export {default} from './ThemeCard'
+export {default} from './themeCard'
