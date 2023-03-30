@@ -18,7 +18,6 @@ import { Context } from '../../context/Context'
 //getWeatherInfo Function
 import getWeatherInfo from '../../Functions/getWeatherInfo'
 
-
 // Components
 import Loading from '../Loading'
 import TopContainer from '../../components/PrimaryCards/TopContainer'
