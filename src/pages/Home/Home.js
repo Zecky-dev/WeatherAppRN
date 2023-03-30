@@ -37,12 +37,11 @@ export default function () {
     const { theme } = useContext(Context);
     const [selectedLocation, setSelectedLocation] = useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
 
-    useEffect(() => {requestLocationPermission()},[])
-
     const { data, loading, error } = useFetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedLocation.lat}&longitude=${selectedLocation.lng}&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul`)
 
     const [modalVisible, setModalVisible] = useState(false)
 
+    useEffect(() => {requestLocationPermission()},[])
 
     const requestLocationPermission = async () => {
         try {
@@ -58,7 +57,7 @@ export default function () {
                             latitude,longitude
                         }).then(
                             json => {
-                                const address_name = json.results[6].formatted_address
+                                const address_name = json.results[7].formatted_address
                                 setSelectedLocation({
                                     address_name, lng: longitude , lat: latitude
                                 })
