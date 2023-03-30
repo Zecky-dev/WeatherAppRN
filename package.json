@@ -20,6 +20,7 @@
     "react": "18.2.0",
     "react-native": "0.71.4",
     "react-native-dynamic-search-bar": "^2.0.2",
+    "react-native-geolocation-service": "^5.3.1",
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-modal": "^13.0.1",
     "react-native-radio-buttons-group": "^2.3.2",
