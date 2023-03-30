@@ -57,7 +57,7 @@ export default function () {
                             latitude,longitude
                         }).then(
                             json => {
-                                const address_name = json.results[7].formatted_address
+                                const address_name = json.results[9].formatted_address
                                 setSelectedLocation({
                                     address_name, lng: longitude , lat: latitude
                                 })

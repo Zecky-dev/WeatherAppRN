@@ -10,24 +10,6 @@ export default function ({ theme, weather, location }) {
     const degree = Math.round(parseFloat(weather.degree)).toString()
 
     return (
-        /*<View style={style.mid_container}>
-            <View style={style.mid_left}>
-                <Text style={style.degree}>
-                    {degree} °C
-                </Text>
-            </View>
-            <View style={style.mid_right}>
-                <View style={style.mid_right_inner_top}>
-                    <Text style={style.city}>{location} - {hour}</Text>
-                </View>
-                <View style={style.mid_right_inner_bottom}>
-                    <Text style={style.weather_status}>
-                        {weather.status}
-                    </Text>
-                </View>
-            </View>
-        </View>
-        */
         <View style={style.mid_container}>
             <View style={style.mid_container_top}>
                 <Text style={style.city}>{location} - {hour}</Text>

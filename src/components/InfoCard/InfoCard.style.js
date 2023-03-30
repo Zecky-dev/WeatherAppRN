@@ -22,9 +22,11 @@ const baseStyle = {
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
+        textAlign: 'center',
     },
     mid_container_top:{
-        flex:0.25,
+        flex:0,
+        height:'auto',
         backgroundColor: 'purple',
         justifyContent: 'center',
         alignItems: 'center',
@@ -35,7 +37,7 @@ const baseStyle = {
     },
     
     mid_container_bottom:{
-        flex:0.75,
+        flex:1,
         flexDirection: 'row',
     },
 
