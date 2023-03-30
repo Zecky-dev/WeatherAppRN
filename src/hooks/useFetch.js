@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+
+
 function useFetch(url) {
     const [data,setData] = useState(null)
     const [loading,setLoading] = useState(null)
@@ -24,10 +26,8 @@ function useFetch(url) {
 
 
     useEffect(() => {
-        console.log(url)
         getData()
         if(data!=null && error==null && loading == null) {
-            console.log(data)
             interval = setInterval(() => {
                 getData()
             },60 * 60 * 1000)

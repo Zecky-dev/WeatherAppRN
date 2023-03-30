@@ -12,7 +12,6 @@ export default function ({ navigation,loading,theme }) {
                 <Text style={styles[theme].loading_text}>Yükleniyor..</Text>
             </View>
             <Animation source={Anims.loading} />
-        </View>
-        : navigation.navigate('Tabs')
+        </View> : null
     )
 }
