@@ -12,6 +12,7 @@ import { Context } from '../../context/Context'
 import Modal from 'react-native-modal'
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import Loading from '../Loading'
 
 
 // Functions
@@ -155,6 +156,46 @@ const BottomContainer = ({ data, theme }) => {
     )
 }
 
+const ModalContainer = ({ modalVisible, setModalVisible, setSelectedLocation }) => {
+    return (
+        <Modal
+            isVisible={modalVisible}
+            onBackButtonPress={() => setModalVisible(!modalVisible)}
+            onBackdropPress={() => setModalVisible(!modalVisible)}
+        >
+            <View style={{ backgroundColor: 'white', width: '100%', height: 200, borderRadius: 4, }}>
+                <GooglePlacesAutocomplete
+                    placeholder='Ara'
+
+                    fetchDetails={true}
+                    onPress={(data, details = null) => {
+                        setSelectedLocation({
+                            lat: details.geometry.location.lat,
+                            lng: details.geometry.location.lng,
+                            address_name: details.formatted_address
+                        })
+                        setModalVisible(!modalVisible)
+                    }}
+                    styles={
+                        {
+                            textInput: {
+                                borderBottomWidth: 0.8,
+                                borderBottomColor: 'gray',
+                                borderBottomLeftRadius: 0,
+                                borderBottomRightRadius: 0,
+                            }
+                        }
+                    }
+                    enablePoweredByContainer={false}
+                    query={{
+                        key: 'AIzaSyAwXeRKWDGslG6VS_wXXfCA6Hmmwy3YYQM',
+                        language: 'tr',
+                    }}
+                />
+            </View>
+        </Modal>
+    )
+}
 
 export default function () {
     const { theme } = useContext(Context);
@@ -174,15 +215,7 @@ export default function () {
             {
                 loading ?
                     (
-                        <View style={{ flex: 1, }}>
-                            <View style={{ position: 'absolute', top: '60%', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                                <Text style={{ color: 'white', fontSize: 36 }}>Yükleniyor..</Text>
-                            </View>
-
-                            <Animation source={Anims.loading} />
-
-                        </View>
-
+                        <Loading loading={loading} theme={theme} />
                     )
                     : error ? (
                         <Animation source={Anims.error} />
@@ -194,40 +227,7 @@ export default function () {
                                     <TopContainer data={data} theme={theme} />
                                     <MidContainer theme={theme} weather={getWeatherInfo(data, 'current')} location={selectedLocation.address_name} />
                                     <BottomContainer data={data} theme={theme} />
-                                    <Modal
-                                        isVisible={modalVisible}
-                                        onBackButtonPress={() => setModalVisible(!modalVisible)}
-                                        onBackdropPress={() => setModalVisible(!modalVisible)}
-                                    >
-                                        <View style={{ backgroundColor: 'white', width: '100%', height: 200, borderRadius: 4, }}>
-                                            <GooglePlacesAutocomplete
-                                                placeholder='Ara'
-
-                                                fetchDetails={true}
-                                                onPress={(data, details = null) => {
-                                                    console.log(data)
-                                                    console.log(details)
-                                                    setSelectedLocation({ lat: details.geometry.location.lat, lng: details.geometry.location.lng, address_name: details.formatted_address })
-                                                    setModalVisible(!modalVisible)
-                                                }}
-                                                styles={
-                                                    {
-                                                        textInput: {
-                                                            borderBottomWidth: 0.8,
-                                                            borderBottomColor: 'gray',
-                                                            borderBottomLeftRadius: 0,
-                                                            borderBottomRightRadius: 0,
-                                                        }
-                                                    }    
-                                                }
-                                                enablePoweredByContainer = {false}
-                                                query={{
-                                                    key: 'AIzaSyAwXeRKWDGslG6VS_wXXfCA6Hmmwy3YYQM',
-                                                    language: 'tr',
-                                                }}
-                                            />
-                                        </View>
-                                    </Modal>
+                                    <ModalContainer modalVisible={modalVisible} setModalVisible={setModalVisible} setSelectedLocation={setSelectedLocation} />
                                 </>
                             )
                             : null

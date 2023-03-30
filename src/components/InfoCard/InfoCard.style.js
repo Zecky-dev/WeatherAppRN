@@ -3,65 +3,62 @@ import { StyleSheet } from 'react-native'
 const baseStyle = {
      /* Mid */
      mid_container: {
-        flex: 0.85,
-        flexDirection: 'row',
-    },
-
-    /* Mid Left */
-
-    mid_left: {
-        flex: 0.5,
-        backgroundColor: '#FFFFFF1F',
-        margin: 8,
-        borderRadius: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flex: 1,
     },
 
     degree: {
         color: 'white',
-        fontSize: 36,
-    },
-
-
-    /* Mid Right */
-
-    mid_right: {
-        flex: 1,
-        flexDirection: 'column',
-        margin: 8,
-        borderRadius: 8,
-    },
-
-    /* Mid right inner top */
-    mid_right_inner_top: {
-        flex: 1,
-        backgroundColor: 'purple',
-        borderTopStartRadius: 4,
-        borderTopEndRadius: 4,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    city: {
-        color: 'white',
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
     },
 
     weather_status: {
         color: 'white',
-        fontSize: 32,
+        fontSize: 24,
+        fontWeight: 'bold',
+    },
+    
+    city: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    mid_container_top:{
+        flex:0.25,
+        backgroundColor: 'purple',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 8,
+        borderTopRightRadius:8,
+        borderTopLeftRadius:8,
+        padding:8,
+    },
+    
+    mid_container_bottom:{
+        flex:0.75,
+        flexDirection: 'row',
     },
 
-    mid_right_inner_bottom: {
-        flex: 2,
+    mid_container_bottom_left:{
+        flex: 0.5,
         backgroundColor: '#FFFFFF1F',
-        borderBottomStartRadius: 4,
-        borderBottomEndRadius: 4,
+        marginHorizontal: 8,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
     },
+
+    mid_container_bottom_right: {
+        flex: 0.5,
+        backgroundColor: '#FFFFFF1F',
+        marginHorizontal: 8,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
 }
 
 export default StyleSheet.create({
