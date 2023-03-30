@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import Animation from '../../assets/animations/Animation'
+import Animation from '../../assets/animations/Animation/Animation'
 import Anims from '../../assets/animations/index'
 import styles from './Loading.style'
 
