@@ -1,12 +1,12 @@
 import Anims from '../../assets/animations/index'
 
-const getWeatherStatus = (weatherCode) => {
+const getWeatherStatus = (weatherCode,time) => {
     if (weatherCode == 0) {
-        return { animation: Anims.sunny, status: 'Açık' }
+        return { animation: time?(time>=6 && time<19?Anims.sunny:Anims.clear_sky_night):Anims.sunny, status: 'Açık' }
     }
 
     else if (weatherCode == 1 || weatherCode == 2 || weatherCode == 3) {
-        return { animation: Anims.partly_cloudy, status: 'Parçalı Bulutlu' }
+        return { animation: time?(time>=6 && time<19?Anims.partly_cloudy:Anims.partly_cloudy_night):Anims.partly_cloudy, status: 'Parçalı Bulutlu' }
     }
 
     else if (weatherCode == 45 || weatherCode == 48) {
@@ -18,11 +18,11 @@ const getWeatherStatus = (weatherCode) => {
     }
 
     else if (weatherCode == 61 || weatherCode == 63 || weatherCode == 65 || weatherCode == 66 || weatherCode == 67) {
-        return { animation: Anims.rainy, status: 'Yağmurlu' };
+        return { animation: time?(time<19 && time>=6?Anims.rainy:Anims.rainy_night):Anims.rainy, status: 'Yağmurlu' };
     }
 
     else if (weatherCode == 71 || weatherCode == 73 || weatherCode == 75 || weatherCode == 77) {
-        return { animation: Anims.snow, status: 'Kar Yağışlı' };
+        return { animation: time?(time<19 && time>=6?Anims.snow:Anims.snowy_night):Anims.snow, status: 'Kar Yağışlı' };
     }
 
     else if (weatherCode == 80 || weatherCode == 81 || weatherCode == 82 || weatherCode == 85 || weatherCode == 86) {
@@ -34,16 +34,16 @@ const getWeatherStatus = (weatherCode) => {
     }
 }
 
-const getWeatherInfo = (data, type) => {
+const getWeatherInfo = (data, type,time) => {
     if (type == 'daily') {
         let daily_info = []
         const hourly = data.hourly;
         for (i = 0; i < 24; i++) {
             daily_info.push(
                 {
-                    animation: getWeatherStatus(hourly.weathercode[i]).animation,
-                    degree: hourly.temperature_2m[i],
                     time: hourly.time[i],
+                    animation: getWeatherStatus(hourly.weathercode[i],parseInt(hourly.time[i].substring(hourly.time[i].length-5,hourly.time[i].length-3))).animation,
+                    degree: hourly.temperature_2m[i],
                     weatherStatus: getWeatherStatus(hourly.weathercode[i]).status,
                     weatherCode: hourly.weathercode[i],
                 }
@@ -55,7 +55,7 @@ const getWeatherInfo = (data, type) => {
         const currentWeather = data.current_weather;
         const { weathercode, temperature } = currentWeather;
         return {
-            animation: getWeatherStatus(weathercode).animation,
+            animation: getWeatherStatus(weathercode,time).animation,
             status: getWeatherStatus(weathercode).status,
             degree: temperature,
         }
