@@ -13,7 +13,11 @@ const assets = {
         rainy_night: require('./files/clear_sky_night.json'),
         snowy_night: require('./files/clear_sky_night.json'),
         loading: require('./files/loading.json'),
-        error: require('./files/error.json')
+        error: require('./files/error.json'),
+        clear_sky_night: require('./files/clear_sky_night.json'),
+        partly_cloudy_night: require('./files/partly_cloudy_night.json'),
+        rainy_night: require('./files/rainy_night.json'),
+        snowy_night: require('./files/snowy_night.json'),
     }
 }
 
