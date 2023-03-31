@@ -2,7 +2,7 @@ import React from 'react'
 import { View,FlatList } from 'react-native'
 import styles from './BottomContainer.style'
 import getWeatherInfo from '../../../Functions/getWeatherInfo'
-import DailyInfoCard from '../../DailyInfoCard'
+import DailyInfoCard from '../../SecondaryCards/DailyInfoCard'
 
 const BottomContainer = ({ data, theme }) => {
     getWeatherInfo(data, 'weekly')

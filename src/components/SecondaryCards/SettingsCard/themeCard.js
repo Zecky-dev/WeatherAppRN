@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Text, View, Switch } from 'react-native'
-import { Context } from '../../context/Context';
+import { Context } from '../../../context/Context';
 import styles from './themeCard.style'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'

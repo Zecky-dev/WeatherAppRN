@@ -1,7 +1,7 @@
 import React from 'react'
 import { View,FlatList } from 'react-native'
 import Animation from '../../../assets/animations/Animation/Animation'
-import HourlyInfoCard from '../../HourlyInfoCard'
+import HourlyInfoCard from '../../SecondaryCards/HourlyInfoCard'
 import getWeatherInfo from '../../../Functions/getWeatherInfo'
 import styles from './TopContainer.style'
 
