@@ -13,6 +13,9 @@ import usePermission from '../../hooks/usePermission'
 //Styles
 import styles from './Home.style'
 
+//Config folder
+import {DARK_MODE,LIGHT_MODE,API_KEY} from "@env";
+
 //Context api
 import { Context } from '../../context/Context'
 
@@ -37,14 +40,14 @@ export default function () {
 
     const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${selectedLocation.lat}&longitude=${selectedLocation.lng}&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul`
     const { data, loading, error } = useFetch(API_URL)
-    usePermission(setSelectedLocation);
+    usePermission(setSelectedLocation,API_KEY);
 
     return (
         <ImageBackground
             style={styles[theme].container}
             source={(theme === 'light')
-                ? require('../../assets/images/light_mode_back.jpeg')
-                : require('../../assets/images/dark_mode_back.png')}>
+                ? require(LIGHT_MODE)
+                : require(DARK_MODE)}>
             <Statusbar />
             {
                 loading ?
@@ -81,6 +84,8 @@ export default function () {
                                         modalVisible={modalVisible}
                                         setModalVisible={setModalVisible}
                                         setSelectedLocation={setSelectedLocation}
+                                        theme={theme}
+                                        API_KEY={API_KEY}
                                     />
                                 </>
                             )
