@@ -14,7 +14,7 @@ import usePermission from '../../hooks/usePermission'
 import styles from './Home.style'
 
 //Config folder
-import {DARK_MODE,LIGHT_MODE,API_KEY} from "@env";
+import {DARK_MODE,LIGHT_MODE,API_KEY,API_URL_HEAD,API_URL_TAIL} from "@env";
 
 //Context api
 import { Context } from '../../context/Context'
@@ -38,7 +38,7 @@ export default function () {
     const { theme,selectedLocation,setSelectedLocation } = useContext(Context);
     const [modalVisible, setModalVisible] = useState(false)
 
-    const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${selectedLocation.lat}&longitude=${selectedLocation.lng}&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul`
+    const API_URL = API_URL_HEAD+selectedLocation.lat+'&longitude='+selectedLocation.lng+API_URL_TAIL
     const { data, loading, error } = useFetch(API_URL)
     usePermission(setSelectedLocation,API_KEY);
 
