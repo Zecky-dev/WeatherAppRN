@@ -8,12 +8,27 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 export default function () {
     const { theme, setTheme } = useContext(Context);
     const [isEnabled, setIsEnabled] = useState(false);
+    
+    const saveSettingsAsyncStorage = async (value) => {
+        try {
+            await AsyncStorage.setItem('theme',value)
+        }
+        catch(err) {
+            // Saving error
+        }
+    } 
+
     const toggleSwitch = () => {
         setIsEnabled(!isEnabled);
         setTheme(()=>{
-            if (theme === 'dark')
-            return 'light'
-            else return 'dark'
+            if (theme === 'dark') {
+                saveSettingsAsyncStorage('light')
+                return 'light'
+            }
+            else {
+                saveSettingsAsyncStorage('dark')
+                return 'dark'
+            }
         })
     }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Appearance } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native'
@@ -7,10 +7,10 @@ import Home from './pages/Home';
 import Settings from './pages/Settings';
 import { Context } from './context/Context';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Tab = createBottomTabNavigator()
 const DefaultScheme = Appearance.getColorScheme();
-
 
 const Tabs = ({theme}) => {
     return (
@@ -54,7 +54,19 @@ const Tabs = ({theme}) => {
 }
 
 export default function () {
+    
     const [theme, setTheme] = React.useState(DefaultScheme)
+    
+    useEffect(() => {
+        const getTheme = async () => {
+            const savedTheme = await AsyncStorage.getItem('theme')
+            if(savedTheme !== null) {
+                setTheme(savedTheme)
+            }
+        }
+        getTheme()
+    },[])
+
     const [selectedLocation, setSelectedLocation] = React.useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
 
     return (
