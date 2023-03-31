@@ -27,7 +27,7 @@ const baseStyle = {
     mid_container_top:{
         flex:0,
         height:'auto',
-        backgroundColor: 'purple',
+        backgroundColor: '#DA00FF',
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 8,
