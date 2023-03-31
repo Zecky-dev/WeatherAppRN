@@ -55,8 +55,10 @@ const Tabs = ({theme}) => {
 
 export default function () {
     const [theme, setTheme] = React.useState(DefaultScheme)
+    const [selectedLocation, setSelectedLocation] = React.useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
+
     return (
-        <Context.Provider value={{theme,setTheme}}>
+        <Context.Provider value={{theme,setTheme,selectedLocation,setSelectedLocation}}>
             <NavigationContainer>
                 <Tabs theme={theme}/>
             </NavigationContainer>
