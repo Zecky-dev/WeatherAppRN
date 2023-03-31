@@ -4,7 +4,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import Modal from 'react-native-modal'
 import styles from './ModalContainer.style'
 
-const ModalContainer = ({ modalVisible, setModalVisible, setSelectedLocation,theme }) => {
+const ModalContainer = ({ modalVisible, setModalVisible, setSelectedLocation,theme,API_KEY }) => {
     return (
         <Modal
             isVisible={modalVisible}
@@ -43,7 +43,7 @@ const ModalContainer = ({ modalVisible, setModalVisible, setSelectedLocation,the
                     }
                     }
                     query={{
-                        key: 'AIzaSyAwXeRKWDGslG6VS_wXXfCA6Hmmwy3YYQM',
+                        key: API_KEY,
                         language: 'tr',
                     }}
                 />

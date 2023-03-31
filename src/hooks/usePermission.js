@@ -5,7 +5,7 @@ import { PermissionsAndroid } from 'react-native'
 import GeoLocation from 'react-native-geolocation-service'
 import Geocoder from 'react-native-geocoding'
 
-const usePermission = (setSelectedLocation) => {
+const usePermission = (setSelectedLocation,API_KEY) => {
     
     const requestLocationPermission = async () => {
         try {
@@ -15,7 +15,7 @@ const usePermission = (setSelectedLocation) => {
             if (granted === 'granted') {
                 GeoLocation.getCurrentPosition(
                     (position) => {
-                        Geocoder.init("AIzaSyAwXeRKWDGslG6VS_wXXfCA6Hmmwy3YYQM", { language: "tr" })
+                        Geocoder.init(API_KEY, { language: "tr" })
                         const { latitude, longitude } = position.coords
                         Geocoder.from({
                             latitude, longitude

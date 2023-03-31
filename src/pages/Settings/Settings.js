@@ -3,6 +3,7 @@ import { ImageBackground,StatusBar } from 'react-native'
 import SettingsCard from '../../components/SecondaryCards/SettingsCard'
 import {Context} from '../../context/Context'
 import styles from './Settings.style'
+import {DARK_MODE,LIGHT_MODE} from '@env'
 
 const Settings = () => {
     const {theme} = useContext(Context);
@@ -11,8 +12,8 @@ const Settings = () => {
         <ImageBackground 
         style={styles[theme].container}
         source={(theme === 'light')
-                ? require('../../assets/images/light_mode_back.jpeg')
-                : require('../../assets/images/dark_mode_back.png')}
+                ? require(LIGHT_MODE)
+                : require(DARK_MODE)}
         >
             <StatusBar barStyle={'light-content'} />
             <SettingsCard />
