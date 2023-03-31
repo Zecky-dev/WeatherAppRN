@@ -15,8 +15,13 @@ import styles from './Home.style'
 //Context api
 import { Context } from '../../context/Context'
 
-//getWeatherInfo Function
+//Functions
 import getWeatherInfo from '../../Functions/getWeatherInfo'
+
+//permission request
+import { PermissionsAndroid } from 'react-native'
+import GeoLocation from 'react-native-geolocation-service'
+import Geocoder from 'react-native-geocoding'
 
 // Components
 import Loading from '../Loading'
@@ -28,20 +33,15 @@ import InfoCard from '../../components/InfoCard'
 const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 const MidContainer = ({ theme, weather, location }) => <InfoCard theme={theme} weather={weather} location={location} />
 
-import { PermissionsAndroid } from 'react-native'
-import GeoLocation from 'react-native-geolocation-service'
-import Geocoder from 'react-native-geocoding'
 
 
 export default function () {
     const { theme } = useContext(Context);
     const [selectedLocation, setSelectedLocation] = useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
-
-    const { data, loading, error } = useFetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedLocation.lat}&longitude=${selectedLocation.lng}&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul`)
-
     const [modalVisible, setModalVisible] = useState(false)
 
-    useEffect(() => {requestLocationPermission()},[])
+    const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${selectedLocation.lat}&longitude=${selectedLocation.lng}&current_weather=true&hourly=temperature_2m,weathercode&timezone=Europe/Istanbul`
+    const { data, loading, error } = useFetch(API_URL)
 
     const requestLocationPermission = async () => {
         try {
@@ -52,14 +52,14 @@ export default function () {
                 GeoLocation.getCurrentPosition(
                     (position) => {
                         Geocoder.init("AIzaSyAwXeRKWDGslG6VS_wXXfCA6Hmmwy3YYQM", { language: "tr" })
-                        const {latitude,longitude} = position.coords
+                        const { latitude, longitude } = position.coords
                         Geocoder.from({
-                            latitude,longitude
+                            latitude, longitude
                         }).then(
                             json => {
                                 const address_name = json.results[9].formatted_address
                                 setSelectedLocation({
-                                    address_name, lng: longitude , lat: latitude
+                                    address_name, lng: longitude, lat: latitude
                                 })
                             }
                         )
@@ -77,7 +77,7 @@ export default function () {
         }
     }
 
-
+    useEffect(() => { requestLocationPermission() }, [])
 
     return (
         <ImageBackground
