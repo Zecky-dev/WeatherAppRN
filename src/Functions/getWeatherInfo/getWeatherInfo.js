@@ -38,7 +38,7 @@ const getWeatherInfo = (data, type,time) => {
     if (type == 'daily') {
         let daily_info = []
         const hourly = data.hourly;
-        for (i = 0; i < 24; i++) {
+        for (i = new Date().getHours(); i < 24; i++) {
             daily_info.push(
                 {
                     time: hourly.time[i],
