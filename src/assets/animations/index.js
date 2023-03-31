@@ -8,6 +8,10 @@ const assets = {
         storm: require('./files/storm.json'),
         sunny: require('./files/sunny.json'),
         thunder: require('./files/thunder.json'),
+        clear_sky_night: require('./files/clear_sky_night.json'),
+        partly_cloudy_night: require('./files/partly_cloudy_night.json'),
+        rainy_night: require('./files/clear_sky_night.json'),
+        snowy_night: require('./files/clear_sky_night.json'),
         loading: require('./files/loading.json'),
         error: require('./files/error.json')
     }

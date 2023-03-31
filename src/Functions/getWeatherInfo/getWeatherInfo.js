@@ -1,8 +1,8 @@
 import Anims from '../../assets/animations/index'
 
-const getWeatherStatus = (weatherCode) => {
+const getWeatherStatus = (weatherCode,time) => {
     if (weatherCode == 0) {
-        return { animation: Anims.sunny, status: 'Açık' }
+        return { animation: time < 19 ? Anims.sunny : Anims.clear_sky_night, status: 'Açık' }
     }
 
     else if (weatherCode == 1 || weatherCode == 2 || weatherCode == 3) {
@@ -34,7 +34,7 @@ const getWeatherStatus = (weatherCode) => {
     }
 }
 
-const getWeatherInfo = (data, type) => {
+const getWeatherInfo = (data, type, time) => {
     if (type == 'daily') {
         let daily_info = []
         const hourly = data.hourly;
