@@ -15,6 +15,9 @@ const ModalContainer = ({ modalVisible, setModalVisible, setSelectedLocation,the
                 <GooglePlacesAutocomplete
                     placeholder='Ara'
                     fetchDetails={true}
+                    textInputProps={{
+                        placeholderTextColor: 'black',
+                    }}
                     onPress={(data, details = null) => {
                         setSelectedLocation({
                             lat: details.geometry.location.lat,

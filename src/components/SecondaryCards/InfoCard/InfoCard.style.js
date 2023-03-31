@@ -8,31 +8,32 @@ const baseStyle = {
 
     degree: {
         color: 'white',
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: 32,
+        fontWeight: '300'
     },
 
     weather_status: {
         color: 'white',
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: 32,
+        fontWeight: '300'
     },
     
     city: {
         color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 24,
+        fontWeight: '500',
         textAlign: 'center',
     },
     mid_container_top:{
         flex:0,
         height:'auto',
-        backgroundColor: '#DA00FF',
+        backgroundColor: '#FFFFFF1F',
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 8,
         borderTopRightRadius:8,
         borderTopLeftRadius:8,
+        marginBottom: 8,
         padding:8,
     },
     
@@ -42,20 +43,23 @@ const baseStyle = {
     },
 
     mid_container_bottom_left:{
-        flex: 0.5,
+        flex: 1,
         backgroundColor: '#FFFFFF1F',
-        marginHorizontal: 8,
+        marginLeft: 8,
+        marginRight: 4,
         borderBottomLeftRadius: 8,
-        borderBottomRightRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
     },
 
     mid_container_bottom_right: {
-        flex: 0.5,
+        flex: 0,
+        minWidth: 150,
+        width: 'auto',
+        padding: 8,
         backgroundColor: '#FFFFFF1F',
-        marginHorizontal: 8,
-        borderBottomLeftRadius: 8,
+        marginLeft: 4,
+        marginRight: 8,
         borderBottomRightRadius: 8,
         justifyContent: 'center',
         alignItems: 'center'
