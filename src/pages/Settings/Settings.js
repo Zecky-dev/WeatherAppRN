@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
 import { ImageBackground,StatusBar } from 'react-native'
-import ThemeCard from '../../components/ThemeCard/themeCard'
+import SettingsCard from '../../components/SecondaryCards/SettingsCard'
 import {Context} from '../../context/Context'
 import styles from './Settings.style'
 
@@ -15,7 +15,7 @@ const Settings = () => {
                 : require('../../assets/images/dark_mode_back.png')}
         >
             <StatusBar barStyle={'light-content'} />
-            <ThemeCard />
+            <SettingsCard />
         </ImageBackground>
     )
 }

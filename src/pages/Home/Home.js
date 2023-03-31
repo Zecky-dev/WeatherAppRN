@@ -29,11 +29,9 @@ import TopContainer from '../../components/PrimaryCards/TopContainer'
 import SearchBar from '../../components/PrimaryCards/SearchBar'
 import BottomContainer from '../../components/PrimaryCards/BottomContainer'
 import ModalContainer from '../../components/PrimaryCards/ModalContainer'
-import InfoCard from '../../components/InfoCard'
+import InfoCard from '../../components/SecondaryCards/InfoCard'
 const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 const MidContainer = ({ theme, weather, location }) => <InfoCard theme={theme} weather={weather} location={location} />
-
-
 
 export default function () {
     const { theme } = useContext(Context);
@@ -57,7 +55,7 @@ export default function () {
                             latitude, longitude
                         }).then(
                             json => {
-                                const address_name = json.results[9].formatted_address
+                                const address_name = json.results[8].formatted_address
                                 setSelectedLocation({
                                     address_name, lng: longitude, lat: latitude
                                 })
