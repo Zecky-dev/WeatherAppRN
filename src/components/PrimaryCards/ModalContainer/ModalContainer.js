@@ -11,10 +11,9 @@ const ModalContainer = ({ modalVisible, setModalVisible, setSelectedLocation,the
             onBackButtonPress={() => setModalVisible(!modalVisible)}
             onBackdropPress={() => setModalVisible(!modalVisible)}
         >
-            <View style={{ backgroundColor: 'white', width: '100%', height: 200, borderRadius: 4, }}>
+            <View style={{ backgroundColor: 'white', width: '100%', height: 200, borderRadius: 16}}>
                 <GooglePlacesAutocomplete
                     placeholder='Ara'
-
                     fetchDetails={true}
                     onPress={(data, details = null) => {
                         setSelectedLocation({
@@ -24,10 +23,25 @@ const ModalContainer = ({ modalVisible, setModalVisible, setSelectedLocation,the
                         })
                         setModalVisible(!modalVisible)
                     }}
-                    styles={
-                        styles[theme]
+                    styles={{
+                        textInputContainer: {
+                            borderBottomWidth: 2,
+                        },
+                        textInput: {
+                            color: 'black',
+                        },
+                        predefinedPlacesDescription: {
+                            color: 'purple',
+                        },
+                        separator: {
+                            borderWidth: 0.3,
+                            borderColor: 'slategray'
+                        },
+                        description: {
+                            color: 'black',
+                        },
                     }
-                    enablePoweredByContainer={false}
+                    }
                     query={{
                         key: 'AIzaSyAwXeRKWDGslG6VS_wXXfCA6Hmmwy3YYQM',
                         language: 'tr',
