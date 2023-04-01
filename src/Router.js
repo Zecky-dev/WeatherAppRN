@@ -67,7 +67,8 @@ export default function () {
         getTheme()
     },[])
 
-    const [selectedLocation, setSelectedLocation] = React.useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
+    const [selectedLocation, setSelectedLocation] = 
+    React.useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
 
     return (
         <Context.Provider value={{theme,setTheme,selectedLocation,setSelectedLocation}}>
