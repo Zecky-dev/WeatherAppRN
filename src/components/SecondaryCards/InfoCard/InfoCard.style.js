@@ -8,8 +8,9 @@ const baseStyle = {
 
     degree: {
         color: 'white',
-        fontSize: 32,
-        fontWeight: '300'
+        fontSize: 24,
+        fontWeight: '300',
+        marginLeft: 4,
     },
 
     weather_status: {

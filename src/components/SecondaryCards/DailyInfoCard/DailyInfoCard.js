@@ -4,6 +4,7 @@ import Animation from '../../../assets/animations/Animation/Animation'
 import styles from './DailyInfoCard.style'
 import moment from 'moment'
 
+
 export default function({weather,theme}){
     const style = styles[theme]
     function getDayName(dateStr, locale) {
@@ -25,7 +26,7 @@ export default function({weather,theme}){
             <View style={style.mid_container}>
                 <Animation source={weather[12].animation}/>
             </View>
-            <View style={style.bottom_container}>
+            <View style={style.bottom_container}>          
                 <Text style={style.degree_text}>{avarageTemperature} °C </Text>
             </View>
         </View>

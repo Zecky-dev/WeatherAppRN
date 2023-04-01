@@ -53,11 +53,12 @@ const getWeatherInfo = (data, type,time) => {
     }
     else if (type == 'current') {
         const currentWeather = data.current_weather;
-        const { weathercode, temperature } = currentWeather;
+        const { weathercode, temperature, windspeed } = currentWeather;
         return {
             animation: getWeatherStatus(weathercode,time).animation,
             status: getWeatherStatus(weathercode).status,
             degree: temperature,
+            windspeed,
         }
     }
     else if (type == 'weekly') {
