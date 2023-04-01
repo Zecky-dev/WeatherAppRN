@@ -1,14 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import styles from './InfoCard.style'
-import moment from 'moment'
-import 'moment/locale/tr'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 export default function ({ theme, weather, location }) {
-    let hour = moment().format('LT')
     const style = styles[theme]
     const degree = Math.round(parseFloat(weather.degree))
     const windspeed = Math.round(parseFloat(weather.windspeed))
@@ -16,7 +13,7 @@ export default function ({ theme, weather, location }) {
     return (
         <View style={style.mid_container}>
             <View style={style.mid_container_top}>
-                <Text style={style.city}>{location} - {hour}</Text>
+                <Text style={style.city}>{location}</Text>
             </View>
             <View style={style.mid_container_bottom}>
                 <View style={style.mid_container_bottom_left}>
