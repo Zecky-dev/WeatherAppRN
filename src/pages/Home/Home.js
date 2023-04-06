@@ -1,6 +1,6 @@
 // Native Packages
 import React, { useContext, useState } from 'react'
-import { StatusBar, ImageBackground } from 'react-native'
+import { StatusBar, ImageBackground, View, Text } from 'react-native'
 
 //Animations
 import Animation from '../../assets/animations/Animation/Animation'
@@ -34,6 +34,8 @@ const MidContainer = ({ theme, weather, location }) => <InfoCard theme={theme} w
 
 
 
+ 
+
 export default function () {
     const { theme,selectedLocation,setSelectedLocation } = useContext(Context);
     const [modalVisible, setModalVisible] = useState(false)
@@ -43,55 +45,55 @@ export default function () {
     usePermission(setSelectedLocation,API_KEY);
 
     return (
-        <ImageBackground
-            style={styles[theme].container}
-            source={(theme === 'light')
-                ? require(LIGHT_MODE)
-                : require(DARK_MODE)}>
-            <Statusbar />
-            {
-                loading ?
-                    (
-                        <Loading loading={loading} theme={theme} />
-                    )
-                    : error ? (
-                        <Animation source={Anims.error} />
-                    )
-                        : data ?
-                            (
-                                <>
-                                    <SearchBar
-                                        theme={theme}
-                                        modal={{ setModalVisible, modalVisible }}
-                                    />
 
-                                    <TopContainer
-                                        data={data}
-                                        theme={theme}
-                                    />
+            <ImageBackground
+                style={styles[theme].container}
+                source={(theme === 'light')
+                    ? require(LIGHT_MODE)
+                    : require(DARK_MODE)}>
+                <Statusbar />
+                {
+                    loading ?
+                        (
+                            <Loading loading={loading} theme={theme} />
+                        )
+                        : error ? (
+                            <Animation source={Anims.error} />
+                        )
+                            : data ?
+                                (
+                                    <>
+                                        <SearchBar
+                                            theme={theme}
+                                            modal={{ setModalVisible, modalVisible }}
+                                        />
 
-                                    <MidContainer
-                                        theme={theme}
-                                        weather={getWeatherInfo(data, 'current')}
-                                        location={selectedLocation.address_name}
-                                    />
+                                        <TopContainer
+                                            data={data}
+                                            theme={theme}
+                                        />
 
-                                    <BottomContainer
-                                        data={data}
-                                        theme={theme} />
+                                        <MidContainer
+                                            theme={theme}
+                                            weather={getWeatherInfo(data, 'current')}
+                                            location={selectedLocation.address_name}
+                                        />
 
-                                    <ModalContainer
-                                        modalVisible={modalVisible}
-                                        setModalVisible={setModalVisible}
-                                        setSelectedLocation={setSelectedLocation}
-                                        theme={theme}
-                                        API_KEY={API_KEY}
-                                    />
-                                </>
-                            )
-                            : null
-            }
+                                        <BottomContainer
+                                            data={data}
+                                            theme={theme} />
 
-        </ImageBackground>
+                                        <ModalContainer
+                                            modalVisible={modalVisible}
+                                            setModalVisible={setModalVisible}
+                                            setSelectedLocation={setSelectedLocation}
+                                            theme={theme}
+                                            API_KEY={API_KEY}
+                                        />
+                                    </>
+                                )
+                                : null
+                        }
+            </ImageBackground>
     );
 }
