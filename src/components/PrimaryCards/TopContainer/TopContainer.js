@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { View,FlatList } from 'react-native'
 import Animation from '../../../assets/animations/Animation/Animation'
 import HourlyInfoCard from '../../SecondaryCards/HourlyInfoCard'
 import getWeatherInfo from '../../../Functions/getWeatherInfo'
 import styles from './TopContainer.style'
 
+
+
 const TopContainer = ({ data, theme }) => {
     let time = new Date()
+
 
     if(time.getMinutes >= 30)
         time = time.getHours()+1

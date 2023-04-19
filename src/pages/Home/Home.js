@@ -29,6 +29,7 @@ import SearchBar from '../../components/PrimaryCards/SearchBar'
 import BottomContainer from '../../components/PrimaryCards/BottomContainer'
 import ModalContainer from '../../components/PrimaryCards/ModalContainer'
 import InfoCard from '../../components/SecondaryCards/InfoCard'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 const Statusbar = () => <StatusBar translucent backgroundColor='transparent' />
 const MidContainer = ({ theme, weather, location }) => <InfoCard theme={theme} weather={weather} location={location} />
 
@@ -63,11 +64,13 @@ export default function () {
                             : data ?
                                 (
                                     <>
+                                    
                                         <SearchBar
-                                            theme={theme}
-                                            modal={{ setModalVisible, modalVisible }}
+                                                theme={theme}
+                                                modal={{ setModalVisible, modalVisible }}
                                         />
-
+                                    
+                                        
                                         <TopContainer
                                             data={data}
                                             theme={theme}

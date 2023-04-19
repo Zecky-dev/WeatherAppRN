@@ -7,6 +7,11 @@ const baseStyle = {
         marginVertical: 16,
         marginHorizontal: 12,
     },
+    top_container_2: {
+        flex: 2,
+        marginVertical: 16,
+        marginHorizontal: 12,
+    },
     animation_container: {
         flex: 0.75,
         //height:Dimensions.get('screen').height/2.4,

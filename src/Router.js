@@ -21,7 +21,7 @@ const Tabs = ({theme}) => {
             },
             tabBarHideOnKeyboard: true,
             tabBarShowLabel: false,
-            headerShown:false
+            headerShown:false,
         }}>
             <Tab.Screen
                 name="Home"
@@ -35,7 +35,10 @@ const Tabs = ({theme}) => {
                     
                 }}
             />
-            <Tab.Screen
+            
+            
+            
+        <Tab.Screen
                 name="Settings"
                 component={Settings}
                 options={{
@@ -49,6 +52,7 @@ const Tabs = ({theme}) => {
                     
                 }}
             />
+                
         </Tab.Navigator>
     )
 }
