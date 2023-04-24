@@ -17,8 +17,8 @@ https://user-images.githubusercontent.com/77771717/234112384-5d9a258d-a80b-41aa-
 * Kullanıcının karşısına çıkan veriler saatlik olarak güncellenir.
 * Her bir hava durumu için kullanılacak animasyonlar uygulama içerisinde mevcuttur, günlük hava durumu üst kısımda haftalık hava durumu ise 
 alt kısımda yer alır.
-* Seçilen ülke/şehir ismi, havanın santigrat derece cinsinden değeri, rüzgar hızı gibi bilgiler uygulamanın orta kısmında görüntülenebilir.
-* Ayarlar kısmında uygulamanın temasını değiştirmek için kullanılan bir buton bulunmaktadır.
+* Seçilen ülke/şehir ismi, rüzgar hızı ve sıcaklığın istenilen birimde değeri gibi bilgiler uygulamanın orta kısmında görüntülenebilir.
+* Ayarlar kısmında uygulamanın temasını ve kullanılan birimleri değiştirmek için kullanılan alanlar bulunmaktadır.
 
 ## Kullanılan Paketler
 
@@ -58,8 +58,8 @@ A weather app built with React Native that allows you to view daily and weekly w
 * By using the search feature, the user can view weekly and daily weather data for the desired location in list format.
 * The data presented to the user is updated on an hourly basis.
 * The application contains animations to represent each weather condition, with daily weather conditions displayed at the top and weekly weather conditions at the bottom of the screen.
-* The selected country/city name, temperature in Celsius, wind speed, and other details are displayed in the middle of the application.
-* The settings section includes a button for changing the application theme.
+* The selected country/city name, wind speed, and temperature value in the desired unit can be displayed in the middle of the application.
+* There are fields in the settings tab to change the theme of the application and the units used.
 
 ## Used Packages
 
