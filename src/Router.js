@@ -60,12 +60,16 @@ const Tabs = ({theme}) => {
 export default function () {
     
     const [theme, setTheme] = React.useState(DefaultScheme)
-    
+    const [units,setUnits] = React.useState(JSON.stringify({tempUnit: "°C",velocityUnit: "km/s"}));
+
     useEffect(() => {
         const getTheme = async () => {
             const savedTheme = await AsyncStorage.getItem('theme')
+            const savedUnits = await AsyncStorage.getItem('units');
+            setUnits(savedUnits)
             if(savedTheme !== null) {
                 setTheme(savedTheme)
+                setUnits(savedUnits)
             }
         }
         getTheme()
@@ -75,7 +79,7 @@ export default function () {
     React.useState({ address_name: 'Istanbul, Turkiye', lng: 28.9784, lat: 41.0082 })
 
     return (
-        <Context.Provider value={{theme,setTheme,selectedLocation,setSelectedLocation}}>
+        <Context.Provider value={{theme,setTheme,selectedLocation,setSelectedLocation,units,setUnits}}>
             <NavigationContainer>
                 <Tabs theme={theme}/>
             </NavigationContainer>

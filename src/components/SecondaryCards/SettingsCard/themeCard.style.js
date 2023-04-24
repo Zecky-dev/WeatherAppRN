@@ -5,9 +5,9 @@ const baseStyle = {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 32,
+        marginVertical: 0,
         padding:8,
-        marginTop:42,
+        marginTop:48,
         marginHorizontal:8,
         borderRadius:8
     },

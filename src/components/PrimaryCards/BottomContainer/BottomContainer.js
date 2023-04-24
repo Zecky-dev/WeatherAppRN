@@ -4,7 +4,7 @@ import styles from './BottomContainer.style'
 import getWeatherInfo from '../../../Functions/getWeatherInfo'
 import DailyInfoCard from '../../SecondaryCards/DailyInfoCard'
 
-const BottomContainer = ({ data, theme }) => {
+const BottomContainer = ({ data, theme, units }) => {
     getWeatherInfo(data, 'weekly')
     return (
         <View style={styles[theme].bottom_container}>
@@ -12,7 +12,7 @@ const BottomContainer = ({ data, theme }) => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 data={getWeatherInfo(data, 'weekly')}
-                renderItem={({ item }) => <DailyInfoCard weather={item} theme={theme} />}
+                renderItem={({ item }) => <DailyInfoCard weather={item} theme={theme} units={units} />}
             />
         </View>
 

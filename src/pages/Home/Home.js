@@ -38,7 +38,7 @@ const MidContainer = ({ theme, weather, location }) => <InfoCard theme={theme} w
  
 
 export default function () {
-    const { theme,selectedLocation,setSelectedLocation } = useContext(Context);
+    const { theme,selectedLocation,setSelectedLocation,units } = useContext(Context);
     const [modalVisible, setModalVisible] = useState(false)
 
     const API_URL = API_URL_HEAD+selectedLocation.lat+'&longitude='+selectedLocation.lng+API_URL_TAIL
@@ -84,7 +84,9 @@ export default function () {
 
                                         <BottomContainer
                                             data={data}
-                                            theme={theme} />
+                                            theme={theme}
+                                            units={units}
+                                        />
 
                                         <ModalContainer
                                             modalVisible={modalVisible}

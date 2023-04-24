@@ -6,10 +6,12 @@ import styles from './themeCard.style'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function () {
-    const { theme, setTheme } = useContext(Context);
-    const [isEnabled, setIsEnabled] = useState(false);
-    
-    const saveSettingsAsyncStorage = async (value) => {
+    const { theme, setTheme, units, setUnits } = useContext(Context);
+    const [themeSwitchEnabled, setThemeSwitchEnabled] = useState(false);
+    const [unitSwitchEnabled,setUnitSwitchEnabled] = useState(false);
+
+    // Theme
+    const saveThemeAsyncStorage = async (value) => {
         try {
             await AsyncStorage.setItem('theme',value)
         }
@@ -18,31 +20,80 @@ export default function () {
         }
     } 
 
-    const toggleSwitch = () => {
-        setIsEnabled(!isEnabled);
+    const themeSwitch = () => {
+        setThemeSwitchEnabled(!themeSwitchEnabled);
         setTheme(()=>{
             if (theme === 'dark') {
-                saveSettingsAsyncStorage('light')
+                saveThemeAsyncStorage('light')
                 return 'light'
             }
             else {
-                saveSettingsAsyncStorage('dark')
+                saveThemeAsyncStorage('dark')
                 return 'dark'
             }
         })
     }
 
+    // Units
+    const saveUnitAsyncStorage = async (value) => {
+        try {
+            await AsyncStorage.setItem('units',value);
+        }
+        catch(err) {
+            // Saving error
+        }
+    } 
+    
+    const unitSwitch = () => {
+        setUnitSwitchEnabled(!unitSwitchEnabled);
+        saveUnitAsyncStorage(unitSwitchEnabled ? JSON.stringify({tempUnit: "°F", velocityUnit: "mph"}) : JSON.stringify({tempUnit: "°C", velocityUnit: "km/sa"}));
+        setUnits(() => {
+            if(JSON.parse(units).tempUnit === "°C") {
+                return JSON.stringify({
+                    tempUnit: "°F",
+                    velocityUnit: "mph"
+                })
+            }
+            else {
+                return JSON.stringify({
+                    tempUnit: "°C",
+                    velocityUnit: "km/sa"
+                })
+            }
+        })
+    }
+    
+    
+
     return (
-        <View style={styles[theme].container}>
-            <View style={styles[theme].left_container}>
-                <Text style={styles[theme].text}>Temayı değiştir: {theme === 'dark' ? 'Koyu' : 'Açık'}</Text>
+        
+        <View>
+            <View style={styles[theme].container}>
+                <View style={styles[theme].left_container}>
+                    <Text style={styles[theme].text}>Temayı değiştir: {theme === 'dark' ? 'Koyu' : 'Açık'}</Text>
+                </View>
+                <View style={styles[theme].right_container}>
+                    <Switch
+                        onValueChange={themeSwitch}
+                        value={themeSwitchEnabled}
+                    />
+                </View>
             </View>
-            <View style={styles[theme].right_container}>
-                <Switch
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
+
+            <View style={[styles[theme].container,{marginTop:16,}]}>
+                <View style={styles[theme].left_container}>
+                    <Text style={styles[theme].text}>Sıcaklık ve Hız Birimleri: {JSON.parse(units).tempUnit} - {JSON.parse(units).velocityUnit}</Text>
+                </View>
+                <View style={styles[theme].right_container}>
+                    <Switch
+                        onValueChange={unitSwitch}
+                        value={unitSwitchEnabled}
+                    />
+                </View>
             </View>
+
+
         </View>
+        
     )
 }
