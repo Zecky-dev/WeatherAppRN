@@ -8,7 +8,7 @@ Günlük ve haftalık hava durumunu görüntüleyebileceğiniz React Native ile 
 
 ## Uygulama Tanıtım Videosu
 
-https://user-images.githubusercontent.com/77771717/234112384-5d9a258d-a80b-41aa-86c6-bf934e026b64.mp4
+https://user-images.githubusercontent.com/77771717/234236296-6cb711fd-82d8-4c90-8554-21bdf1c3e373.mp4
 
 ## Uygulama Özellikleri
 
